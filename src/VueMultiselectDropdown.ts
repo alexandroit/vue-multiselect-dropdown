@@ -1,3 +1,4 @@
+import { h as vueH } from 'vue';
 import { ensureDropdownStyles } from './styles';
 import type { DropdownItem, DropdownRenderContext, DropdownSettings, PrimitiveItem } from './types';
 
@@ -79,6 +80,53 @@ function renderIcon(h: CreateElement, name: IconName, className = 'vmsd-icon') {
     h('path', { attrs: { d: iconPath(name) } })
   ]);
 }
+
+function capitalize(value: string) {
+  return value ? value.charAt(0).toUpperCase() + value.slice(1) : value;
+}
+
+function normalizeVue2RenderData(data: Record<string, any> | null | undefined) {
+  if (!data) {
+    return null;
+  }
+
+  const props: Record<string, any> = {};
+
+  for (const [key, value] of Object.entries(data)) {
+    if (key === 'attrs' || key === 'domProps') {
+      Object.assign(props, value);
+      continue;
+    }
+
+    if (key === 'on' && value && typeof value === 'object') {
+      for (const [eventName, handler] of Object.entries(value)) {
+        props[`on${capitalize(eventName)}`] = handler;
+      }
+      continue;
+    }
+
+    props[key] = value;
+  }
+
+  return props;
+}
+
+const h: CreateElement = (...args: any[]) => {
+  const [tag, data, children] = args;
+
+  if (args.length === 1) {
+    return vueH(tag);
+  }
+
+  if (
+    args.length === 2 &&
+    (Array.isArray(data) || typeof data === 'string' || typeof data === 'number' || data == null)
+  ) {
+    return vueH(tag, null, data as any);
+  }
+
+  return vueH(tag, normalizeVue2RenderData(data), children);
+};
 
 function isPrimitiveItem(item: DropdownItem): item is PrimitiveItem {
   return typeof item === 'string' || typeof item === 'number' || typeof item === 'boolean';
@@ -234,14 +282,30 @@ function isTextInputTarget(target: EventTarget | null) {
 
 export const VueMultiselectDropdown = {
   name: 'VueMultiselectDropdown',
-  model: {
-    prop: 'value',
-    event: 'input'
-  },
+  emits: [
+    'update:modelValue',
+    'input',
+    'update:selectedItems',
+    'change',
+    'select',
+    'de-select',
+    'select-all',
+    'de-select-all',
+    'group-select',
+    'group-de-select',
+    'scroll-to-end',
+    'add-filter-new-item',
+    'open',
+    'close'
+  ],
   props: {
     data: {
       type: Array,
       default: () => []
+    },
+    modelValue: {
+      type: Array,
+      default: undefined
     },
     value: {
       type: Array,
@@ -308,6 +372,9 @@ export const VueMultiselectDropdown = {
       if (Array.isArray(this.selectedItems)) {
         return this.selectedItems;
       }
+      if (Array.isArray(this.modelValue)) {
+        return this.modelValue;
+      }
       if (Array.isArray(this.value)) {
         return this.value;
       }
@@ -372,7 +439,7 @@ export const VueMultiselectDropdown = {
     window.addEventListener('resize', this.updateMenuPosition);
     window.addEventListener('scroll', this.updateMenuPosition, true);
   },
-  beforeDestroy(this: any) {
+  beforeUnmount(this: any) {
     document.removeEventListener('click', this.onDocumentClick, true);
     document.removeEventListener('keydown', this.onDocumentKeydown, true);
     window.removeEventListener('resize', this.updateMenuPosition);
@@ -394,9 +461,10 @@ export const VueMultiselectDropdown = {
       return this.filteredItems.filter((item: DropdownItem) => !isDisabledItem(item));
     },
     emitSelection(this: any, items: DropdownItem[]) {
-      if (!Array.isArray(this.selectedItems) && !Array.isArray(this.value)) {
+      if (!Array.isArray(this.selectedItems) && !Array.isArray(this.modelValue) && !Array.isArray(this.value)) {
         this.internalSelected = items;
       }
+      this.$emit('update:modelValue', items);
       this.$emit('input', items);
       this.$emit('update:selectedItems', items);
       this.$emit('change', items);
@@ -785,7 +853,7 @@ export const VueMultiselectDropdown = {
       this.menuStyle = style;
     }
   },
-  render(this: any, h: CreateElement) {
+  render(this: any) {
     const settings = this.resolvedSettings as Required<DropdownSettings<DropdownItem>>;
     const skin = String(settings.skin || settings.theme || 'classic');
     const skinFallbackClass = ['classic', 'material', 'dark', 'custom'].includes(skin) ? '' : 'theme-custom';

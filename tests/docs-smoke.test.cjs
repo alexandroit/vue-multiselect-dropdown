@@ -5,16 +5,16 @@ const path = require("node:path");
 
 const repoRoot = path.resolve(__dirname, "..");
 
-test("docs smoke: Vue 2 index", () => {
-  const html = fs.readFileSync(path.join(repoRoot, "docs-src/vue-2/index.html"), "utf8");
+test("docs smoke: Vue 3 index", () => {
+  const html = fs.readFileSync(path.join(repoRoot, "docs-src/vue-3/index.html"), "utf8");
   assert.match(html, /meta name="viewport"/i);
   assert.match(html, /@stackline\/vue-multiselect-dropdown/);
-  assert.match(html, /Vue 2 docs/);
+  assert.match(html, /Vue 3 docs/);
 });
 
 test("skin smoke: package styles", () => {
   const source = fs.readFileSync(path.join(repoRoot, "src/styles.ts"), "utf8");
-  assert.match(source, /stackline-vue2-live-20260527/);
+  assert.match(source, /stackline-vue3-live-20260527/);
   assert.match(source, /\.skin-material/);
   assert.match(source, /\.skin-dark/);
   assert.match(source, /\.vmsd-checkbox \{[\s\S]*place-items: center;/);

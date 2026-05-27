@@ -1,48 +1,45 @@
 # @stackline/vue-multiselect-dropdown
 
-> A maintained Vue 2 multiselect dropdown with controlled state, searchable/grouped options, lazy loading hooks, render functions, skins, body-overlay positioning, and ADA-friendly keyboard/ARIA behavior.
+> A maintained Vue 3 multiselect dropdown with controlled state, searchable/grouped options, lazy loading hooks, render functions, skins, body-overlay positioning, and ADA-friendly keyboard/ARIA behavior.
 
 [![npm version](https://img.shields.io/npm/v/@stackline/vue-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/vue-multiselect-dropdown)
 [![license](https://img.shields.io/npm/l/@stackline/vue-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/vue-multiselect-dropdown/blob/main/LICENSE)
-[![Vue 2](https://img.shields.io/badge/Vue-2.x-42b883?style=flat-square&logo=vue.js)](https://alexandro.net/docs/vue/multiselect/vue-2/)
+[![Vue 3](https://img.shields.io/badge/Vue-3.x-42b883?style=flat-square&logo=vue.js)](https://alexandro.net/docs/vue/multiselect/vue-3/)
 
-**[Documentation & Live Demos](https://alexandro.net/docs/vue/multiselect/)** | **[Vue 2 Demo](https://alexandro.net/docs/vue/multiselect/vue-2/)** | **[npm](https://www.npmjs.com/package/@stackline/vue-multiselect-dropdown)** | **[Repository](https://github.com/alexandroit/vue-multiselect-dropdown)**
+**[Documentation & Live Demos](https://alexandro.net/docs/vue/multiselect/)** | **[Vue 3 Demo](https://alexandro.net/docs/vue/multiselect/vue-3/)** | **[npm](https://www.npmjs.com/package/@stackline/vue-multiselect-dropdown)** | **[Repository](https://github.com/alexandroit/vue-multiselect-dropdown)**
 
-**Current validation package release:** `2.0.0` for Vue `2.x`
+**Current validation package release:** `3.0.0` for Vue `3.x`
 
 ---
 
 ## Why this library?
 
-`@stackline/vue-multiselect-dropdown` provides a maintained Vue 2 multiselect component for applications that need predictable selection state, search, grouping, skins, keyboard support, and live tested examples.
+`@stackline/vue-multiselect-dropdown` provides a maintained Vue 3 multiselect component for applications that need predictable selection state, search, grouping, skins, keyboard support, and live tested examples.
 
-The package follows a familiar Stackline settings contract while staying idiomatic for Vue 2: bind with `v-model`, pass `:data`, customize behavior through `:settings`, and listen for `@select`, `@de-select`, `@select-all`, `@de-select-all`, `@open`, and `@close`.
+The package follows a familiar Stackline settings contract while staying idiomatic for Vue 3: bind with `v-model`, pass `:data`, customize behavior through `:settings`, and listen for `@select`, `@de-select`, `@select-all`, `@de-select-all`, `@open`, and `@close`.
 
 ## Vue Version Compatibility
 
 | Package family | Vue family | Peer range | First tested runtime | Demo link |
 | :---: | :---: | :---: | :---: | :--- |
-| **2.x** | **Vue 2 only** | **`>=2.0.0 <3.0.0`** | **2.0.0** | [Vue 2 family docs](https://alexandro.net/docs/vue/multiselect/vue-2/) |
+| **3.x** | **Vue 3 only** | **`>=3.0.0 <4.0.0`** | **3.0.0** | [Vue 3 family docs](https://alexandro.net/docs/vue/multiselect/vue-3/) |
 
 ## Installation
 
 ```bash
-npm install @stackline/vue-multiselect-dropdown@2.0.0 --save-exact
+npm install @stackline/vue-multiselect-dropdown@3.0.0 --save-exact
 ```
 
 ## Setup
 
 ```js
-import Vue from 'vue';
+import { createApp } from 'vue';
 import {
   VueMultiselect,
   VueMultiselectDropdown
 } from '@stackline/vue-multiselect-dropdown';
 
-Vue.use(VueMultiselect);
-
-new Vue({
-  el: '#app',
+const app = createApp({
   components: { VueMultiselectDropdown },
   data() {
     return {
@@ -63,6 +60,9 @@ new Vue({
     };
   }
 });
+
+app.use(VueMultiselect);
+app.mount('#app');
 ```
 
 ```html
@@ -129,10 +129,10 @@ npm run build
 npm test
 ```
 
-Vue 2 docs:
+Vue 3 docs:
 
 ```bash
-cd docs-src/vue-2
+cd docs-src/vue-3
 npm install
 npm run build
 ```

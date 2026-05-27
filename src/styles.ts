@@ -1034,7 +1034,7 @@ const styles = `
   }
 }
 
-/* stackline-vue2-live-20260527 */
+/* stackline-vue3-live-20260527 */
 `;
 
 export function ensureDropdownStyles() {
