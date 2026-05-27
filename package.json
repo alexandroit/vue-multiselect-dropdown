@@ -1,0 +1,65 @@
+{
+  "name": "@stackline/vue-multiselect-dropdown",
+  "version": "2.0.0",
+  "description": "A maintained Vue 2 multiselect dropdown with controlled state, skins, live docs, body overlays, and ADA-friendly keyboard support.",
+  "keywords": [
+    "vue",
+    "vue 2",
+    "multiselect",
+    "multiselect-dropdown",
+    "multi-select",
+    "dropdown",
+    "searchable-dropdown",
+    "checkbox-dropdown",
+    "stackline",
+    "accessibility",
+    "aria"
+  ],
+  "homepage": "https://alexandro.net/docs/vue/multiselect/vue-2/",
+  "bugs": {
+    "url": "https://github.com/alexandroit/vue-multiselect-dropdown/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexandroit/vue-multiselect-dropdown.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf dist docs/vue-2",
+    "docs:install:vue-2": "cd docs-src/vue-2 && npm install",
+    "build:docs:vue-2": "cd docs-src/vue-2 && npm run build",
+    "build:docs": "npm run build:docs:vue-2",
+    "publish:verdaccio:vue-2": "npm run build && npm publish --registry=http://127.0.0.1:4873 --@stackline:registry=http://127.0.0.1:4873 --tag vue-2 --access public",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.cjs"
+  },
+  "peerDependencies": {
+    "vue": ">=2.0.0 <3.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "tsup": "8.5.1",
+    "typescript": "5.9.3",
+    "vue": "2.0.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@stackline/vue-multiselect-dropdown-docs-vue2",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 4360",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@stackline/vue-multiselect-dropdown": "2.0.0",
+    "vue": "2.0.0"
+  },
+  "devDependencies": {
+    "vite": "8.0.3"
+  }
+}

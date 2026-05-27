@@ -1,0 +1,7 @@
+node_modules
+dist
+docs-src/**/node_modules
+docs-src/**/dist
+PROJECT_MEMORY.md
+*.memory.md
+*.tgz
