@@ -40,6 +40,7 @@ const styles = `
   position: relative;
   display: flex;
   align-items: center;
+  align-content: center;
   flex-wrap: wrap;
   width: 100%;
   min-height: 56px;
@@ -77,15 +78,23 @@ const styles = `
   flex: 1 1 auto;
   min-width: 0;
   align-items: center;
+  align-content: center;
   gap: 8px;
   flex-wrap: wrap;
 }
 
 .vmsd-placeholder,
 .vmsd-single-value {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  justify-content: flex-start;
   min-width: 0;
+  max-width: 100%;
   color: var(--vmsd-muted);
   font-size: 0.95rem;
+  line-height: 1.25;
+  text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -677,6 +686,7 @@ const styles = `
 
 .theme-classic .vmsd-trigger,
 .skin-classic .vmsd-trigger {
+  align-content: center;
   flex-wrap: nowrap;
   gap: 6px;
   min-height: 42px;

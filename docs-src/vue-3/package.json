@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@stackline/vue-multiselect-dropdown": "3.0.0",
+    "@stackline/vue-multiselect-dropdown": "3.0.1",
     "vue": "3.0.0"
   },
   "devDependencies": {

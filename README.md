@@ -1,6 +1,6 @@
 # @stackline/vue-multiselect-dropdown
 
-> A maintained Vue 3 multiselect dropdown with controlled state, searchable/grouped options, lazy loading hooks, render functions, skins, body-overlay positioning, and ADA-friendly keyboard/ARIA behavior.
+> A maintained Vue 3 multiselect dropdown with controlled state, searchable/grouped options, lazy loading hooks, render functions, skins, body-overlay positioning, and ADA-compliant keyboard/ARIA behavior.
 
 [![npm version](https://img.shields.io/npm/v/@stackline/vue-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/vue-multiselect-dropdown)
 [![license](https://img.shields.io/npm/l/@stackline/vue-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/vue-multiselect-dropdown/blob/main/LICENSE)
@@ -8,7 +8,7 @@
 
 **[Documentation & Live Demos](https://alexandro.net/docs/vue/multiselect/)** | **[Vue 3 Demo](https://alexandro.net/docs/vue/multiselect/vue-3/)** | **[npm](https://www.npmjs.com/package/@stackline/vue-multiselect-dropdown)** | **[Repository](https://github.com/alexandroit/vue-multiselect-dropdown)**
 
-**Current validation package release:** `3.0.0` for Vue `3.x`
+**Current validation package release:** `3.0.1` for Vue `3.x`
 
 ---
 
@@ -27,7 +27,7 @@ The package follows a familiar Stackline settings contract while staying idiomat
 ## Installation
 
 ```bash
-npm install @stackline/vue-multiselect-dropdown@3.0.0 --save-exact
+npm install @stackline/vue-multiselect-dropdown@3.0.1 --save-exact
 ```
 
 ## Setup

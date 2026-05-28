@@ -2,7 +2,7 @@ import { createApp, version as vueVersion } from 'vue/dist/vue.esm-bundler.js';
 import { VueMultiselectDropdown } from '@stackline/vue-multiselect-dropdown';
 import './styles.css';
 
-const PACKAGE_VERSION = '3.0.0';
+const PACKAGE_VERSION = '3.0.1';
 const VUE_RUNTIME = vueVersion;
 const SKINS = ['classic', 'material', 'dark', 'custom', 'brand'];
 
