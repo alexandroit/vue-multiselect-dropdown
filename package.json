@@ -1,6 +1,6 @@
 {
   "name": "@stackline/vue-multiselect-dropdown",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Maintained Vue multiselect dropdown with Vue 2 and Vue 3 release lines, ADA-compliant keyboard/ARIA support, Stackline skins, body overlays, search, grouping, lazy loading, and render functions.",
   "keywords": [
     "vue",

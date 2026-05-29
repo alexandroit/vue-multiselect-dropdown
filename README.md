@@ -4,12 +4,12 @@
 
 [![npm version](https://img.shields.io/npm/v/@stackline/vue-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/vue-multiselect-dropdown)
 [![license](https://img.shields.io/npm/l/@stackline/vue-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/vue-multiselect-dropdown/blob/main/LICENSE)
-[![Vue 2](https://img.shields.io/badge/Vue-2.x-42b883?style=flat-square&logo=vue.js)](https://alexandro.net/docs/vue/multiselect/vue-2/)
-[![Vue 3](https://img.shields.io/badge/Vue-3.x-42b883?style=flat-square&logo=vue.js)](https://alexandro.net/docs/vue/multiselect/vue-3/)
+[![Vue 2](https://img.shields.io/badge/Vue-2.x-42b883?style=flat-square)](https://alexandro.net/docs/vue/multiselect/vue-2/)
+[![Vue 3](https://img.shields.io/badge/Vue-3.x-42b883?style=flat-square)](https://alexandro.net/docs/vue/multiselect/vue-3/)
 
 **[Documentation & Live Demos](https://alexandro.net/docs/vue/multiselect/)** | **[Vue 2 Demo](https://alexandro.net/docs/vue/multiselect/vue-2/)** | **[Vue 3 Demo](https://alexandro.net/docs/vue/multiselect/vue-3/)** | **[npm](https://www.npmjs.com/package/@stackline/vue-multiselect-dropdown)** | **[Repository](https://github.com/alexandroit/vue-multiselect-dropdown)**
 
-**Latest Vue 3 package release:** `3.0.2` for Vue `3.x`
+**Latest Vue 3 package release:** `3.0.3` for Vue `3.x`
 
 **Maintained Vue 2 package release:** `2.0.0` for Vue `2.x`
 
@@ -33,7 +33,7 @@ The package follows a familiar Stackline settings contract while staying idiomat
 For Vue 3 applications:
 
 ```bash
-npm install @stackline/vue-multiselect-dropdown@3.0.2 --save-exact
+npm install @stackline/vue-multiselect-dropdown@3.0.3 --save-exact
 ```
 
 For Vue 2 applications:
