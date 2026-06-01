@@ -14,10 +14,11 @@ test("docs smoke: Vue 3 index", () => {
 
 test("skin smoke: package styles", () => {
   const source = fs.readFileSync(path.join(repoRoot, "src/styles.ts"), "utf8");
-  assert.match(source, /stackline-vue3-live-20260527/);
   assert.match(source, /\.skin-material/);
   assert.match(source, /\.skin-dark/);
-  assert.match(source, /\.vmsd-checkbox \{[\s\S]*place-items: center;/);
+  assert.match(source, /\.vmsd-value \{[\s\S]*min-height: 1\.45em;/);
+  assert.match(source, /\.vmsd-overflow \{[\s\S]*flex: 0 0 auto;[\s\S]*white-space: nowrap;/);
+  assert.match(source, /\.vmsd-checkbox\[data-checked="true"\]::after \{[\s\S]*translate\(-50%, -58%\) rotate\(-45deg\);/);
 });
 
 test("keyboard smoke: option activation is not double handled", () => {
@@ -25,4 +26,22 @@ test("keyboard smoke: option activation is not double handled", () => {
   assert.match(source, /function isActivationKey/);
   assert.ok(source.includes("event.key === 'Spacebar'"));
   assert.ok(source.includes("event.stopPropagation();\n        const activeItem"));
+});
+
+test("combobox contract smoke: Vue exposes checked state and configurable keyboard", () => {
+  const source = fs.readFileSync(path.join(repoRoot, "src/VueMultiselectDropdown.ts"), "utf8");
+  assert.match(source, /aria-checked/);
+  assert.match(source, /aria-activedescendant/);
+  assert.match(source, /backspaceRemovesLastWhenSearchEmpty/);
+  assert.match(source, /deleteRemovesFocusedBadge/);
+  assert.match(source, /spaceOptionAction/);
+});
+
+test("renderless smoke: composable exports prop bags", () => {
+  const source = fs.readFileSync(path.join(repoRoot, "src/composables.ts"), "utf8");
+  assert.match(source, /useMultiSelectDropdown/);
+  assert.match(source, /getTriggerProps/);
+  assert.match(source, /getListboxProps/);
+  assert.match(source, /getOptionProps/);
+  assert.match(source, /aria-checked/);
 });

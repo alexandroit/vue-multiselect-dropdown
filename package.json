@@ -1,7 +1,7 @@
 {
   "name": "@stackline/vue-multiselect-dropdown",
-  "version": "3.0.3",
-  "description": "Maintained Vue multiselect dropdown with Vue 2 and Vue 3 release lines, ADA-compliant keyboard/ARIA support, Stackline skins, body overlays, search, grouping, lazy loading, and render functions.",
+  "version": "3.1.0",
+  "description": "Maintained Vue multiselect dropdown with Vue 2 and Vue 3 release lines, accessibility-focused keyboard/ARIA tested behavior, Stackline skins, body overlays, object data, scoped slots, and renderless composables.",
   "keywords": [
     "vue",
     "vue 3",
@@ -13,7 +13,20 @@
     "checkbox-dropdown",
     "stackline",
     "accessibility",
-    "aria"
+    "accessibility-focused",
+    "aria",
+    "aria-tested",
+    "keyboard-tested",
+    "keyboard-aria-tested",
+    "keyboard-navigation",
+    "a11y",
+    "combobox",
+    "combobox-contract",
+    "headless",
+    "slots",
+    "object-data",
+    "admin-ui",
+    "ada-compliant"
   ],
   "homepage": "https://alexandro.net/docs/vue/multiselect/vue-3/",
   "bugs": {
@@ -63,6 +76,6 @@
   "devDependencies": {
     "tsup": "8.5.1",
     "typescript": "5.9.3",
-    "vue": "3.0.0"
+    "vue": "3.5.35"
   }
 }

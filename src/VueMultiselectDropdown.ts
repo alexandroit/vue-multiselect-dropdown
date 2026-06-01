@@ -51,7 +51,16 @@ const DEFAULT_SETTINGS: Required<DropdownSettings<any>> = {
   removeItemAriaLabel: 'Remove selected option',
   openDropdownAriaLabel: 'Open dropdown',
   closeDropdownAriaLabel: 'Close dropdown',
-  loadingText: 'Loading options'
+  loadingText: 'Loading options',
+  keyboard: {
+    space: true,
+    spaceOptionAction: 'toggle',
+    tab: true,
+    arrows: true,
+    escape: true,
+    backspaceRemovesLastWhenSearchEmpty: false,
+    deleteRemovesFocusedBadge: true
+  }
 };
 
 function iconPath(name: IconName) {
@@ -240,8 +249,14 @@ function mergeUniqueItems<T extends DropdownItem>(
   settings: Required<DropdownSettings<T>>
 ) {
   const bucket = new Map<string, T>();
-  for (const item of base.concat(extra)) {
+  for (const item of base) {
     bucket.set(getPrimaryValue(item, settings), item);
+  }
+  for (const item of extra) {
+    const key = getPrimaryValue(item, settings);
+    if (!bucket.has(key)) {
+      bucket.set(key, item);
+    }
   }
   return Array.from(bucket.values());
 }
@@ -259,6 +274,11 @@ function callRenderFunction(
   return renderFunction(item, context, h);
 }
 
+function callSlot(vm: any, name: string, props: Record<string, any>) {
+  const slot = vm.$slots && vm.$slots[name];
+  return typeof slot === 'function' ? slot(props) : null;
+}
+
 function escapeSelectorValue(value: string) {
   if (typeof CSS !== 'undefined' && typeof CSS.escape === 'function') {
     return CSS.escape(value);
@@ -269,6 +289,10 @@ function escapeSelectorValue(value: string) {
 
 function isActivationKey(event: KeyboardEvent) {
   return event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar';
+}
+
+function isSpaceKey(event: KeyboardEvent) {
+  return event.key === ' ' || event.key === 'Spacebar';
 }
 
 function isTextInputTarget(target: EventTarget | null) {
@@ -356,10 +380,21 @@ export const VueMultiselectDropdown = {
   },
   computed: {
     resolvedSettings(this: any) {
+      const userSettings = this.settings || {};
       const merged = {
         ...DEFAULT_SETTINGS,
-        ...(this.settings || {})
+        ...userSettings,
+        keyboard: {
+          ...DEFAULT_SETTINGS.keyboard,
+          ...(userSettings.keyboard || {})
+        }
       };
+      if (typeof userSettings.escapeToClose === 'boolean' && userSettings.keyboard?.escape == null) {
+        merged.keyboard.escape = userSettings.escapeToClose;
+      }
+      if (typeof merged.keyboard.backspace === 'boolean') {
+        merged.keyboard.backspaceRemovesLastWhenSearchEmpty = merged.keyboard.backspace;
+      }
       const skin = merged.skin || merged.theme || 'classic';
       return {
         ...merged,
@@ -452,6 +487,9 @@ export const VueMultiselectDropdown = {
     },
     getKey(this: any, item: DropdownItem) {
       return getPrimaryValue(item, this.resolvedSettings);
+    },
+    getOptionId(this: any, key: string) {
+      return `${this.instanceId}-option-${key}`;
     },
     isSelected(this: any, item: DropdownItem) {
       const key = this.getKey(item);
@@ -593,6 +631,13 @@ export const VueMultiselectDropdown = {
       this.emitSelection(next);
       this.$emit('de-select', item);
     },
+    removeLastSelected(this: any) {
+      const last = this.selected[this.selected.length - 1];
+      if (!last) {
+        return;
+      }
+      this.removeItem(last);
+    },
     addFilterItem(this: any, event: Event) {
       event.preventDefault();
       event.stopPropagation();
@@ -609,36 +654,60 @@ export const VueMultiselectDropdown = {
       this.query = '';
     },
     onTriggerKeydown(this: any, event: KeyboardEvent) {
-      if (isActivationKey(event)) {
+      const keyboard = this.resolvedSettings.keyboard;
+      if (event.key === 'Enter' || (isSpaceKey(event) && keyboard.space !== false)) {
         event.preventDefault();
         this.toggleDropdown();
         return;
       }
-      if (event.key === 'ArrowDown') {
+      if (keyboard.arrows !== false && event.key === 'ArrowDown') {
         event.preventDefault();
         this.openDropdown();
         this.focusFirstOption();
         return;
       }
-      if (event.key === 'ArrowUp') {
+      if (keyboard.arrows !== false && event.key === 'ArrowUp') {
         event.preventDefault();
         this.openDropdown();
         this.focusLastOption();
         return;
       }
-      if (event.key === 'Escape') {
+      if (keyboard.escape !== false && event.key === 'Escape') {
         this.closeDropdown();
       }
     },
     onListKeydown(this: any, event: KeyboardEvent) {
-      if (event.key === 'Escape') {
+      const keyboard = this.resolvedSettings.keyboard;
+
+      if (keyboard.escape !== false && event.key === 'Escape') {
         event.preventDefault();
         event.stopPropagation();
         this.closeDropdown();
         return;
       }
 
-      if (isTextInputTarget(event.target) && event.key !== 'ArrowDown') {
+      if (event.key === 'Tab') {
+        return;
+      }
+
+      if (isTextInputTarget(event.target)) {
+        if (
+          event.key === 'Backspace' &&
+          !this.query &&
+          keyboard.backspaceRemovesLastWhenSearchEmpty === true
+        ) {
+          event.preventDefault();
+          event.stopPropagation();
+          this.removeLastSelected();
+          return;
+        }
+
+        if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+          return;
+        }
+      }
+
+      if (keyboard.arrows === false && ['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
         return;
       }
 
@@ -675,10 +744,22 @@ export const VueMultiselectDropdown = {
         return;
       }
       if (isActivationKey(event)) {
+        if (isSpaceKey(event) && keyboard.space === false) {
+          return;
+        }
         event.preventDefault();
         event.stopPropagation();
         const activeItem = selectable.find((item: DropdownItem) => this.getKey(item) === this.focusedKey) || selectable[0];
         this.toggleItem(activeItem);
+        if (keyboard.spaceOptionAction === 'toggle-and-next') {
+          const activeIndex = selectable.findIndex((item: DropdownItem) => this.getKey(item) === this.getKey(activeItem));
+          const nextItem = selectable[Math.min(activeIndex + 1, selectable.length - 1)];
+          if (nextItem) {
+            this.focusOption(nextItem);
+          }
+        } else {
+          this.focusOption(activeItem);
+        }
         return;
       }
     },
@@ -715,18 +796,28 @@ export const VueMultiselectDropdown = {
       if (isActivationKey(event)) {
         event.stopPropagation();
       }
-      if (event.key === 'ArrowDown') {
+      if (this.resolvedSettings.keyboard.arrows !== false && event.key === 'ArrowDown') {
         event.preventDefault();
         event.stopPropagation();
         this.openDropdown();
         this.focusFirstOption();
       }
-      if (event.key === 'ArrowUp') {
+      if (this.resolvedSettings.keyboard.arrows !== false && event.key === 'ArrowUp') {
         event.preventDefault();
         event.stopPropagation();
         this.openDropdown();
         this.focusLastOption();
       }
+    },
+    onRemoveButtonKeydown(this: any, item: DropdownItem, event: KeyboardEvent) {
+      if (
+        this.resolvedSettings.keyboard.deleteRemovesFocusedBadge !== false &&
+        (event.key === 'Backspace' || event.key === 'Delete')
+      ) {
+        this.removeItem(item, event);
+        return;
+      }
+      this.onInlineKeydown(event);
     },
     onTriggerClick(this: any, event: Event) {
       const target = event.target as HTMLElement | null;
@@ -748,7 +839,7 @@ export const VueMultiselectDropdown = {
       this.closeDropdown();
     },
     onDocumentKeydown(this: any, event: KeyboardEvent) {
-      if (this.isOpen && this.resolvedSettings.escapeToClose && event.key === 'Escape') {
+      if (this.isOpen && this.resolvedSettings.keyboard.escape !== false && event.key === 'Escape') {
         this.closeDropdown();
       }
     },
@@ -882,11 +973,14 @@ export const VueMultiselectDropdown = {
             label,
             selected: true,
             disabled: false,
+            key: this.getKey(item),
+            ariaSelected: 'true',
+            ariaChecked: 'true',
             query: this.query,
             toggle: () => this.toggleItem(item),
             remove: () => this.removeItem(item)
           };
-          const rendered = callRenderFunction(this.renderBadge, h, item, context);
+          const rendered = callSlot(this, 'badge', context) || callRenderFunction(this.renderBadge, h, item, context);
           const removeLabel = typeof settings.removeItemAriaLabel === 'function'
             ? settings.removeItemAriaLabel(item)
             : `${settings.removeItemAriaLabel}: ${label}`;
@@ -901,7 +995,7 @@ export const VueMultiselectDropdown = {
                     attrs: { type: 'button', 'aria-label': removeLabel },
                     on: {
                       click: (event: Event) => this.removeItem(item, event),
-                      keydown: this.onInlineKeydown
+                      keydown: (event: KeyboardEvent) => this.onRemoveButtonKeydown(item, event)
                     }
                   },
                   [renderIcon(h, 'remove')]
@@ -911,11 +1005,11 @@ export const VueMultiselectDropdown = {
 
     const valueContent = hasSelection
       ? [h('span', { class: 'vmsd-badge-list' }, badges)]
-      : [h('span', { class: 'vmsd-placeholder' }, [settings.text])];
-
-    if (hiddenCount > 0) {
-      valueContent.push(h('span', { class: 'vmsd-overflow', attrs: { 'aria-label': `${hiddenCount} more selected options` } }, [`+${hiddenCount}`]));
-    }
+      : [
+          h('span', { class: 'vmsd-placeholder' }, [
+            callSlot(this, 'placeholder', { label: settings.text, state: { isOpen: this.isOpen, query: this.query } }) || settings.text
+          ])
+        ];
 
     const trigger = h(
       'div',
@@ -929,7 +1023,8 @@ export const VueMultiselectDropdown = {
           'aria-expanded': this.isOpen ? 'true' : 'false',
           'aria-haspopup': 'listbox',
           'aria-disabled': settings.disabled ? 'true' : 'false',
-          'aria-controls': `${this.instanceId}-listbox`
+          'aria-controls': `${this.instanceId}-listbox`,
+          'aria-activedescendant': this.focusedKey ? this.getOptionId(this.focusedKey) : undefined
         },
         on: {
           click: this.onTriggerClick,
@@ -937,8 +1032,17 @@ export const VueMultiselectDropdown = {
         }
       },
       [
-        h('div', { class: 'vmsd-value' }, valueContent),
+        callSlot(this, 'trigger', {
+          selected: this.selected,
+          label: hasSelection ? this.selected.map((item: DropdownItem) => this.getLabel(item)).join(', ') : settings.text,
+          isOpen: this.isOpen,
+          clearSelection: this.clearSelection,
+          toggleDropdown: this.toggleDropdown
+        }) || h('div', { class: 'vmsd-value' }, valueContent),
         h('div', { class: 'vmsd-actions' }, [
+          hiddenCount > 0
+            ? h('span', { class: 'vmsd-overflow', attrs: { 'aria-label': `${hiddenCount} more selected options` } }, [`+${hiddenCount}`])
+            : null,
           hasClear
             ? h(
                 'button',
@@ -1052,28 +1156,37 @@ export const VueMultiselectDropdown = {
         label,
         selected,
         disabled,
+        index: this.filteredItems.findIndex((candidate: DropdownItem) => this.getKey(candidate) === key),
+        group: getGroupName(item, settings),
+        key,
+        optionId: this.getOptionId(key),
+        ariaSelected: selected ? 'true' : 'false',
+        ariaChecked: selected ? 'true' : 'false',
         query: this.query,
         toggle: () => this.toggleItem(item),
         remove: () => this.removeItem(item)
       };
-      const rendered = callRenderFunction(this.renderItem, h, item, context);
+      const rendered = callSlot(this, 'option', context) || callRenderFunction(this.renderItem, h, item, context);
       return h(
         'div',
         {
           key,
           class: ['vmsd-option', selected ? 'vmsd-selected' : '', disabled ? 'vmsd-disabled' : ''],
           attrs: {
+            id: this.getOptionId(key),
             role: 'option',
             tabindex: disabled ? '-1' : '0',
             'data-vmsd-option': 'true',
             'data-vmsd-key': key,
             'aria-disabled': disabled ? 'true' : 'false',
-            'aria-selected': selected ? 'true' : 'false'
+            'aria-selected': selected ? 'true' : 'false',
+            'aria-checked': selected ? 'true' : 'false'
           },
           on: {
             click: (event: Event) => {
               if (!disabled) {
                 this.toggleItem(item, event);
+                this.focusOption(item);
               }
             },
             focus: () => (this.focusedKey = key),
@@ -1091,12 +1204,18 @@ export const VueMultiselectDropdown = {
       );
     };
 
-    const listChildren = settings.loading
-      ? [h('div', { class: 'vmsd-state', attrs: { role: 'status' } }, [settings.loadingText])]
+    const listChildren = !this.isOpen
+      ? []
+      : settings.loading
+      ? [h('div', { class: 'vmsd-state', attrs: { role: 'status' } }, [callSlot(this, 'loading', { label: settings.loadingText }) || settings.loadingText])]
       : settings.groupBy
       ? this.groupedItems.map((group: { name: string; items: DropdownItem[] }) =>
           h('div', { class: 'vmsd-group', key: group.name, attrs: { role: 'group', 'aria-label': group.name } }, [
-            h('div', { class: 'vmsd-group-header' }, [
+            callSlot(this, 'group-header', {
+              group,
+              selected: group.items.filter((item) => !isDisabledItem(item)).every((item) => this.isSelected(item)),
+              selectGroup: (event: Event) => this.selectGroup(group.name, group.items, event)
+            }) || h('div', { class: 'vmsd-group-header' }, [
               h('span', [`${group.name} · ${group.items.length}`]),
               settings.selectGroup
                 ? h(
@@ -1115,8 +1234,9 @@ export const VueMultiselectDropdown = {
         )
       : this.filteredItems.map(renderOption);
 
-    if (!this.filteredItems.length && !settings.loading) {
-      const emptyContent = this.renderEmptyState ? this.renderEmptyState(this.query, h) : settings.noDataLabel;
+    if (this.isOpen && !this.filteredItems.length && !settings.loading) {
+      const emptyContent = callSlot(this, 'empty', { query: this.query, label: settings.noDataLabel })
+        || (this.renderEmptyState ? this.renderEmptyState(this.query, h) : settings.noDataLabel);
       listChildren.push(h('div', { class: 'vmsd-state' }, [emptyContent]));
     }
 
@@ -1147,7 +1267,8 @@ export const VueMultiselectDropdown = {
             on: { scroll: this.onListScroll }
           },
           listChildren
-        )
+        ),
+        this.isOpen ? callSlot(this, 'menu-footer', { selected: this.selected, filteredItems: this.filteredItems, close: this.closeDropdown }) : null
       ]
     );
 

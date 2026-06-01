@@ -77,6 +77,7 @@ const styles = `
   display: flex;
   flex: 1 1 auto;
   min-width: 0;
+  min-height: 1.45em;
   align-items: center;
   align-content: center;
   gap: 8px;
@@ -90,6 +91,7 @@ const styles = `
   align-self: center;
   justify-content: flex-start;
   min-width: 0;
+  min-height: 1.45em;
   max-width: 100%;
   color: var(--vmsd-muted);
   font-size: 0.95rem;
@@ -173,31 +175,23 @@ const styles = `
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 0;
-  min-height: 0;
+  flex: 0 0 auto;
+  min-width: 24px;
+  min-height: 20px;
   color: var(--vmsd-muted);
   font-size: 0.8rem;
   font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  text-align: center;
 }
 
-.vmsd-root.vmsd-has-overflow:not(.skin-classic) .vmsd-trigger {
+.vmsd-root.vmsd-has-overflow .vmsd-trigger {
   padding-right: 104px;
 }
 
-.vmsd-root.vmsd-has-overflow:not(.skin-classic):not(.vmsd-has-clear) .vmsd-trigger {
+.vmsd-root.vmsd-has-overflow:not(.vmsd-has-clear) .vmsd-trigger {
   padding-right: 74px;
-}
-
-.vmsd-root.vmsd-has-overflow:not(.skin-classic) .vmsd-overflow {
-  position: absolute;
-  top: 50%;
-  right: 76px;
-  transform: translateY(-50%);
-  z-index: 1;
-}
-
-.vmsd-root.vmsd-has-overflow:not(.skin-classic):not(.vmsd-has-clear) .vmsd-overflow {
-  right: 42px;
 }
 
 .vmsd-actions {
@@ -476,9 +470,6 @@ const styles = `
 .vmsd-checkbox {
   position: relative;
   box-sizing: content-box;
-  display: inline-grid;
-  place-items: center;
-  align-self: center;
   flex: 0 0 auto;
   width: 18px;
   height: 18px;
@@ -486,8 +477,6 @@ const styles = `
   border: 2px solid var(--vmsd-border-strong);
   border-radius: 6px;
   background-color: var(--vmsd-bg);
-  line-height: 0;
-  vertical-align: middle;
 }
 
 .vmsd-checkbox[data-checked="true"] {
@@ -507,7 +496,7 @@ const styles = `
   border-color: #fff;
   border-style: solid;
   border-width: 0 0 2px 2px;
-  transform: translate(-50%, -62%) rotate(-45deg);
+  transform: translate(-50%, -58%) rotate(-45deg);
   transform-origin: 50%;
 }
 
@@ -769,9 +758,12 @@ const styles = `
 
 .theme-classic .vmsd-overflow,
 .skin-classic .vmsd-overflow {
+  min-width: 24px;
+  min-height: 20px;
   color: #333333;
   font-size: 14px;
   font-weight: 400;
+  line-height: 1;
 }
 
 .theme-classic .vmsd-actions,
@@ -1006,7 +998,7 @@ const styles = `
   height: 3px;
   margin-top: 0;
   border-width: 0 0 3px 3px;
-  transform: translate(-50%, -62%) rotate(-45deg);
+  transform: translate(-50%, -58%) rotate(-45deg);
 }
 
 .theme-classic .vmsd-option-label,
@@ -1039,12 +1031,10 @@ const styles = `
 
 @media (max-width: 720px) {
   .vmsd-trigger {
-    align-items: flex-start;
+    align-items: center;
     padding-right: 54px;
   }
 }
-
-/* stackline-vue3-live-20260527 */
 `;
 
 export function ensureDropdownStyles() {
