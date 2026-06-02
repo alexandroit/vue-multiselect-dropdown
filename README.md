@@ -9,9 +9,13 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
 [![Reddit community](https://img.shields.io/badge/community-r%2FStackline-ff4500?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/r/Stackline/)
 
-**[Documentation & Live Demos](https://alexandro.net/docs/vue/multiselect/)** | **[Vue 2 Demo](https://alexandro.net/docs/vue/multiselect/vue-2/)** | **[Vue 3 Demo](https://alexandro.net/docs/vue/multiselect/vue-3/)** | **[Community Discussions](https://www.reddit.com/r/Stackline/)** | **[npm](https://www.npmjs.com/package/@stackline/vue-multiselect-dropdown)** | **[Issues](https://github.com/alexandroit/vue-multiselect-dropdown/issues)** | **[Repository](https://github.com/alexandroit/vue-multiselect-dropdown)**
+**[Documentation & Live Demos](https://alexandro.net/docs/vue/multiselect/)** | **[Vue 2 Demo](https://alexandro.net/docs/vue/multiselect/vue-2/)** | **[Vue 3 Demo](https://alexandro.net/docs/vue/multiselect/vue-3/)** | **[npm](https://www.npmjs.com/package/@stackline/vue-multiselect-dropdown)** | **[Issues](https://github.com/alexandroit/vue-multiselect-dropdown/issues)** | **[Repository](https://github.com/alexandroit/vue-multiselect-dropdown)** | **[Community Discussions](https://www.reddit.com/r/Stackline/)**
 
-**Latest Vue 3 release:** `3.1.0` for Vue `3.x`
+<p align="center">
+  <img src="https://alexandro.net/images/public/2026/06/dropdownlist.gif" alt="@stackline/vue-multiselect-dropdown live dropdown preview" width="420">
+</p>
+
+**Latest Vue 3 release:** `3.1.1` for Vue `3.x`
 
 **Maintained Vue 2 release:** `2.0.0` for Vue `2.x`
 
@@ -27,7 +31,7 @@
 
 The package follows the familiar Stackline settings contract while staying idiomatic for Vue: pass `:data`, bind selected values with `v-model`, customize behavior through `:settings`, and listen for Vue events such as `@select`, `@de-select`, `@select-all`, `@de-select-all`, `@open`, and `@close`.
 
-The current stable Vue 3 release is `3.1.0`. It adds renderless composables, a state composable, scoped-slot customization, helper APIs, and a strengthened combobox contract while keeping the styled `<VueMultiselectDropdown />` component compatible with the existing visual contract.
+The current stable Vue 3 release is `3.1.1`. It adds renderless composables, a state composable, scoped-slot customization, helper APIs, and a strengthened combobox contract while keeping the styled `<VueMultiselectDropdown />` component compatible with the existing visual contract.
 
 ## Features
 
@@ -91,7 +95,7 @@ Each package family installs on its matching Vue family. Keep the package family
 For Vue 3 applications:
 
 ```bash
-npm install @stackline/vue-multiselect-dropdown@3.1.0 --save-exact
+npm install @stackline/vue-multiselect-dropdown@3.1.1 --save-exact
 ```
 
 For Vue 2 applications:
@@ -480,7 +484,7 @@ The styled component remains available for drop-in usage. The renderless composa
 
 ## Combobox Contract
 
-Version `3.1.0` tightens the interaction details that usually matter most in production forms:
+Version `3.1.1` tightens the interaction details that usually matter most in production forms:
 
 | Behavior | Contract |
 | :--- | :--- |
@@ -516,7 +520,7 @@ Set any key to `false` to disable that behavior. `backspaceRemovesLastWhenSearch
 
 ## Official Vue 3 Test Matrix
 
-The Vue 3 release was tested in a clean Vue `3.5.35` application with `@stackline/vue-multiselect-dropdown@3.1.0`. The docs use the same examples from that test app, including keyboard navigation, focus, ARIA behavior, badge counters, responsive action buttons, scrollable lists, dialog-safe body overlays, the corrected left-aligned placeholder with vertical centering, scoped-slot customization, headless/custom HTML, and the combobox contract checks for Backspace, Escape, focused badge removal, focus, and option ARIA.
+The Vue 3 release was tested in a clean Vue `3.5.35` application with `@stackline/vue-multiselect-dropdown@3.1.1`. The docs use the same examples from that test app, including keyboard navigation, focus, ARIA behavior, badge counters, responsive action buttons, scrollable lists, dialog-safe body overlays, the corrected left-aligned placeholder with vertical centering, scoped-slot customization, headless/custom HTML, and the combobox contract checks for Backspace, Escape, focused badge removal, focus, and option ARIA.
 
 The same core scenarios are validated for the visual skins:
 
