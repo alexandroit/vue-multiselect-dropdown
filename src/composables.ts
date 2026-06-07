@@ -238,6 +238,10 @@ export function useMultiSelectState<T extends DropdownItem = DropdownItem>(optio
     }
 
     if (isSelected(item)) {
+      if (settings.value.singleSelection) {
+        return;
+      }
+
       removeItem(item);
       return;
     }
@@ -460,6 +464,19 @@ export function useMultiSelectDropdown<T extends DropdownItem = DropdownItem>(
     'aria-multiselectable': state.settings.value.singleSelection ? 'false' : 'true'
   }, props);
 
+  const activateOption = (option: DropdownOptionState<T>) => {
+    if (option.disabled) {
+      return;
+    }
+
+    state.toggleItem(option.item);
+    activeKey.value = option.key;
+
+    if (state.settings.value.singleSelection) {
+      close();
+    }
+  };
+
   const getOptionProps = (option: DropdownOptionState<T>, props: PropBag = {}) => mergePropBags({
     id: `${instanceId}-option-${option.key}`,
     role: 'option',
@@ -471,10 +488,7 @@ export function useMultiSelectDropdown<T extends DropdownItem = DropdownItem>(
       activeKey.value = option.key;
     },
     onClick: () => {
-      if (!option.disabled) {
-        state.toggleItem(option.item);
-        activeKey.value = option.key;
-      }
+      activateOption(option);
     },
     onKeydown: (event: KeyboardEvent) => {
       if (event.key === 'ArrowDown') {
@@ -487,8 +501,7 @@ export function useMultiSelectDropdown<T extends DropdownItem = DropdownItem>(
       }
       if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
         event.preventDefault();
-        state.toggleItem(option.item);
-        activeKey.value = option.key;
+        activateOption(option);
       }
       if (event.key === 'Escape') {
         close();

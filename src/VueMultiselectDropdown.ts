@@ -604,6 +604,11 @@ export const VueMultiselectDropdown = {
       const exists = this.selected.some((selectedItem: DropdownItem) => this.getKey(selectedItem) === key);
 
       if (exists) {
+        if (this.resolvedSettings.singleSelection) {
+          this.closeDropdown();
+          return;
+        }
+
         const next = this.selected.filter((selectedItem: DropdownItem) => this.getKey(selectedItem) !== key);
         this.emitSelection(next);
         this.$emit('de-select', item);

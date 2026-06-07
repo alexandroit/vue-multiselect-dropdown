@@ -45,3 +45,12 @@ test("renderless smoke: composable exports prop bags", () => {
   assert.match(source, /getOptionProps/);
   assert.match(source, /aria-checked/);
 });
+
+test("single-selection contract keeps the active item selected", () => {
+  const componentSource = fs.readFileSync(path.join(repoRoot, "src/VueMultiselectDropdown.ts"), "utf8");
+  const composableSource = fs.readFileSync(path.join(repoRoot, "src/composables.ts"), "utf8");
+
+  assert.match(componentSource, /if \(exists\) \{\s+if \(this\.resolvedSettings\.singleSelection\) \{\s+this\.closeDropdown\(\);\s+return;\s+\}/);
+  assert.match(composableSource, /if \(isSelected\(item\)\) \{\s+if \(settings\.value\.singleSelection\) \{\s+return;\s+\}/);
+  assert.match(composableSource, /const activateOption = \(option: DropdownOptionState<T>\) => \{[\s\S]*state\.toggleItem\(option\.item\);[\s\S]*if \(state\.settings\.value\.singleSelection\) \{\s+close\(\);/);
+});

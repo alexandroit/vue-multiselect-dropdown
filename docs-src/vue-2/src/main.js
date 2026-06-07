@@ -2,7 +2,7 @@ import Vue from 'vue/dist/vue.js';
 import { VueMultiselectDropdown } from '@stackline/vue-multiselect-dropdown';
 import './styles.css';
 
-const PACKAGE_VERSION = '2.0.0';
+const PACKAGE_VERSION = '2.0.2';
 const VUE_RUNTIME = Vue.version;
 const SKINS = ['classic', 'material', 'dark', 'custom', 'brand'];
 
