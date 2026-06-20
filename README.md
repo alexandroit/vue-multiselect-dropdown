@@ -15,7 +15,7 @@
   <img src="https://alexandro.net/images/public/2026/06/dropdownlist.gif" alt="@stackline/vue-multiselect-dropdown live dropdown preview" width="420">
 </p>
 
-**Latest Vue 3 release:** `3.1.3` for Vue `3.x`
+**Latest Vue 3 release:** `3.1.4` for Vue `3.x`
 
 **Maintained Vue 2 release:** `2.0.2` for Vue `2.x`
 
@@ -31,7 +31,7 @@
 
 The package follows the familiar Stackline settings contract while staying idiomatic for Vue: pass `:data`, bind selected values with `v-model`, customize behavior through `:settings`, and listen for Vue events such as `@select`, `@de-select`, `@select-all`, `@de-select-all`, `@open`, and `@close`.
 
-The current stable Vue 3 release is `3.1.3`. It adds renderless composables, a state composable, scoped-slot customization, helper APIs, and a strengthened combobox contract while keeping the styled `<VueMultiselectDropdown />` component compatible with the existing visual contract.
+The current stable Vue 3 release is `3.1.4`. It adds renderless composables, a state composable, scoped-slot customization, helper APIs, and a strengthened combobox contract while keeping the styled `<VueMultiselectDropdown />` component compatible with the existing visual contract.
 
 ## Features
 
@@ -87,7 +87,7 @@ Each package family installs on its matching Vue family. Keep the package family
 
 | Package family | Vue family | Peer range | Tested release window | Demo link |
 | :---: | :---: | :---: | :---: | :--- |
-| **3.x** | **Vue 3 only** | **`>=3.0.0 <4.0.0`** | **3.1.3 through 3.5.35** | [Vue 3 family docs](https://alexandro.net/docs/vue/multiselect/vue-3/) |
+| **3.x** | **Vue 3 only** | **`>=3.0.0 <4.0.0`** | **3.1.4 through 3.5.38** | [Vue 3 family docs](https://alexandro.net/docs/vue/multiselect/vue-3/) |
 | **2.x** | **Vue 2 only** | **`>=2.0.0 <3.0.0`** | **2.0.2** | [Vue 2 family docs](https://alexandro.net/docs/vue/multiselect/vue-2/) |
 
 ## Installation
@@ -95,7 +95,7 @@ Each package family installs on its matching Vue family. Keep the package family
 For Vue 3 applications:
 
 ```bash
-npm install @stackline/vue-multiselect-dropdown@3.1.3 --save-exact
+npm install @stackline/vue-multiselect-dropdown@3.1.4 --save-exact
 ```
 
 For Vue 2 applications:
@@ -484,7 +484,7 @@ The styled component remains available for drop-in usage. The renderless composa
 
 ## Combobox Contract
 
-Version `3.1.3` tightens the interaction details that usually matter most in production forms:
+Version `3.1.4` tightens the interaction details that usually matter most in production forms:
 
 | Behavior | Contract |
 | :--- | :--- |
@@ -520,7 +520,7 @@ Set any key to `false` to disable that behavior. `backspaceRemovesLastWhenSearch
 
 ## Official Vue 3 Test Matrix
 
-The Vue 3 release was tested in a clean Vue `3.5.35` application with `@stackline/vue-multiselect-dropdown@3.1.3`. The docs use the same examples from that test app, including keyboard navigation, focus, ARIA behavior, badge counters, responsive action buttons, scrollable lists, dialog-safe body overlays, the corrected left-aligned placeholder with vertical centering, scoped-slot customization, headless/custom HTML, and the combobox contract checks for Backspace, Escape, focused badge removal, focus, and option ARIA.
+The Vue 3 release was tested in a clean Vue `3.5.38` application with `@stackline/vue-multiselect-dropdown@3.1.4`. The docs use the same examples from that test app, including keyboard navigation, focus, ARIA behavior, badge counters, responsive action buttons, scrollable lists, dialog-safe body overlays, the corrected left-aligned placeholder with vertical centering, scoped-slot customization, headless/custom HTML, and the combobox contract checks for Backspace, Escape, focused badge removal, focus, and option ARIA.
 
 The same core scenarios are validated for the visual skins:
 
