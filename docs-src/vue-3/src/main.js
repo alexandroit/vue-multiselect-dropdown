@@ -1,9 +1,9 @@
-import { computed, createApp, nextTick, ref, version as vueVersion } from 'vue/dist/vue.esm-bundler.js';
+import { computed, createApp, nextTick, ref, version as vueVersion } from 'vue';
 import { VueMultiselectDropdown, useMultiSelectDropdown, useMultiSelectState } from '@stackline/vue-multiselect-dropdown';
 import 'flag-icons/css/flag-icons.min.css';
 import './styles.css';
 
-const PACKAGE_VERSION = '3.1.4';
+const PACKAGE_VERSION = '3.1.5';
 const VUE_RUNTIME = vueVersion;
 const STACKBLITZ_PROJECT_URL = 'https://stackblitz.com/github/alexandroit/stackline-vue-multiselect-vue-3';
 const skins = ['classic', 'material', 'dark', 'custom', 'brand'];
@@ -402,7 +402,7 @@ const DemoCase = {
     }
   },
   template: `
-    <article :class="'example-row' + (test.overflow ? ' overflow-example-row' : '')">
+    <article :id="'case-' + test.id" :class="'example-row' + (test.overflow ? ' overflow-example-row' : '')">
       <div class="demo-cell">
         <div v-if="displayTitle || test.allowDisabledToggle" class="case-title-row">
           <h3 v-if="displayTitle">{{ test.number ? test.number + '. ' : '' }}{{ test.title }}</h3>
@@ -1454,7 +1454,7 @@ const FeatureLab = {
       spaceOptionAction: spaceOptionAction.value
     }));
     const keyboardConfigPreview = computed(() => JSON.stringify(keyboardConfig.value));
-    const contractSettings = computed(() => makeSettings('classic', '3.1.4 contract test', {
+    const contractSettings = computed(() => makeSettings('classic', '3.1.5 contract test', {
       badgeShowLimit: 3,
       addNewItemOnFilter: true,
       addNewButtonText: 'Async add',
@@ -1497,7 +1497,7 @@ const FeatureLab = {
     function toggleAsyncRefresh() {
       const nextData = contractData.value[0] && contractData.value[0].id === countries[0].id ? countries.slice(10) : countries;
       contractData.value = nextData;
-      emit('record', `3.1.4 data refresh: ${nextData.length} countries`);
+      emit('record', `3.1.5 data refresh: ${nextData.length} countries`);
     }
 
     function toggleKeyboardFeature(feature) {
@@ -1509,7 +1509,7 @@ const FeatureLab = {
     async function addCountryFromFilter(query) {
       const requestNumber = staleCounter.value + 1;
       staleCounter.value = requestNumber;
-      emit('record', `3.1.4 async add start: ${requestNumber}: ${query}`);
+      emit('record', `3.1.5 async add start: ${requestNumber}: ${query}`);
       await new Promise((resolve) => window.setTimeout(resolve, requestNumber % 2 ? 650 : 120));
       const nextItem = {
         id: 1000 + requestNumber,
@@ -1519,13 +1519,13 @@ const FeatureLab = {
         region: 'Custom',
         category: 'Custom'
       };
-      emit('record', `3.1.4 async add resolved: ${requestNumber}: ${query}`);
+      emit('record', `3.1.5 async add resolved: ${requestNumber}: ${query}`);
       return nextItem;
     }
 
     function updateContractSelection(items) {
       contractSelected.value = items;
-      emit('record', `3.1.4 contract change: ${items.length} selected`);
+      emit('record', `3.1.5 contract change: ${items.length} selected`);
     }
 
     function focusOpenPanelTarget(target, attempts = 0) {
@@ -1621,7 +1621,7 @@ const FeatureLab = {
   template: `
     <section class="skin-section feature-lab-section">
       <div class="section-heading">
-        <p class="eyebrow">Vue 3.1.4 coverage</p>
+        <p class="eyebrow">Vue 3.1.5 coverage</p>
         <h2>New functionality live lab</h2>
       </div>
 

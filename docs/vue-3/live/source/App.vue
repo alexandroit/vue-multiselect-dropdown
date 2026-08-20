@@ -1,8 +1,8 @@
 <template>
   <main class="page shell-page">
     <header class="topbar">
-      <p class="eyebrow">Vue 3.5.38 runtime</p>
-      <h1>@stackline/vue-multiselect-dropdown 3.1.4</h1>
+      <p class="eyebrow">Vue 3.5.41 runtime</p>
+      <h1>@stackline/vue-multiselect-dropdown 3.1.5</h1>
     </header>
 
     <section class="docs-main">
@@ -19,7 +19,7 @@
         <a
           v-for="route in routes"
           :key="route.slug"
-          :href="'/' + route.slug"
+          :href="'#/' + route.slug"
           :class="{ active: route.slug === currentRoute.slug }"
           @click.prevent="navigate(route.slug)"
         >
@@ -40,7 +40,8 @@ function readSlug() {
   if (hashSlug) {
     return hashSlug;
   }
-  return window.location.pathname.replace(/^\/+|\/+$/g, '') || 'basic';
+  const pathSlug = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/').pop();
+  return allRoutes.some((route) => route.slug === pathSlug) ? pathSlug : 'basic';
 }
 
 const slug = ref(readSlug());
@@ -51,7 +52,7 @@ function syncRoute() {
 }
 
 function navigate(nextSlug) {
-  window.history.pushState(null, '', '/' + nextSlug);
+  window.history.pushState(null, '', '#/' + nextSlug);
   slug.value = nextSlug;
   window.scrollTo({ top: 0, left: 0 });
 }

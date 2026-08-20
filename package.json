@@ -1,6 +1,6 @@
 {
   "name": "@stackline/vue-multiselect-dropdown",
-  "version": "3.1.4",
+  "version": "3.1.5",
   "description": "Maintained Vue multiselect dropdown with Vue 2 and Vue 3 release lines, accessibility-focused keyboard/ARIA tested behavior, Stackline skins, body overlays, object data, scoped slots, and renderless composables.",
   "keywords": [
     "vue",
@@ -48,9 +48,14 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     }
   },
   "sideEffects": false,
@@ -65,7 +70,10 @@
     "publish:verdaccio:vue-2": "npm run build && npm publish --registry=http://127.0.0.1:4873 --@stackline:registry=http://127.0.0.1:4873 --tag vue-2 --access public",
     "publish:verdaccio:vue-3": "npm run build && npm publish --registry=http://127.0.0.1:4873 --@stackline:registry=http://127.0.0.1:4873 --tag vue-3 --access public",
     "typecheck": "tsc --noEmit",
-    "test": "node --test tests/*.test.cjs"
+    "pack:check": "node scripts/pack-check.mjs",
+    "test": "node --test tests/*.test.cjs",
+    "test:browser": "node scripts/verify-combobox-contract.cjs",
+    "check": "npm run typecheck && npm run build && npm test && npm run pack:check"
   },
   "peerDependencies": {
     "vue": ">=3.0.0 <4.0.0"
@@ -74,8 +82,14 @@
     "access": "public"
   },
   "devDependencies": {
+    "puppeteer-core": "25.8.0",
     "tsup": "8.5.1",
     "typescript": "5.9.3",
-    "vue": "3.5.38"
+    "vue": "3.5.41"
+  },
+  "overrides": {
+    "esbuild": "0.28.1",
+    "nanoid": "3.3.18",
+    "postcss": "8.5.26"
   }
 }
