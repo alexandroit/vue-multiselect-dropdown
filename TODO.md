@@ -7,11 +7,11 @@
 - [x] Remove known development audit findings.
 - [x] Add package, distribution, browser, and artifact checks.
 - [x] Validate and publish the canonical artifact to Verdaccio.
-- [ ] Push source and pass GitHub Actions.
-- [ ] Publish the canonical artifact to public npm.
-- [ ] Update and pass the Vue 3 playground CI against public npm.
-- [ ] Create the GitHub tag and release assets.
-- [ ] Deploy and verify canonical and compatibility documentation routes.
+- [x] Push source and pass GitHub Actions.
+- [x] Publish the canonical artifact to public npm.
+- [x] Update and pass the Vue 3 playground CI against public npm.
+- [x] Create the GitHub tag and release assets.
+- [x] Deploy and verify canonical and compatibility documentation routes.
 
 ## Future Maintenance
 
