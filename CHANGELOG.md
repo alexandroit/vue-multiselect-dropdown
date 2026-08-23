@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
+## Unreleased
+
+- Updated both documentation apps to the patched Vite 8.2 toolchain and added
+  reproducible build and audit coverage for the Vue 2 compatibility line.
+- Added a strict Vue 2 audit gate that tolerates only the unfixed upstream
+  `GHSA-5j4c-8p2g-v4jx` advisory and rejects every additional finding.
+
 ## [3.1.5] - 2026-08-19
 
 ### Changed
