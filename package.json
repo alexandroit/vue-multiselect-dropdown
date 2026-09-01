@@ -83,10 +83,10 @@
     "access": "public"
   },
   "devDependencies": {
-    "puppeteer-core": "25.8.0",
+    "puppeteer-core": "25.9.0",
     "tsup": "8.5.1",
     "typescript": "5.9.3",
-    "vue": "3.5.41"
+    "vue": "3.5.42"
   },
   "overrides": {
     "esbuild": "0.28.2",
