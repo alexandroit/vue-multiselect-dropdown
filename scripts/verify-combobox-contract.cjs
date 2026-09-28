@@ -144,7 +144,7 @@ async function run() {
     await page.waitForSelector('.preview-card .vmsd-trigger', { visible: true });
 
     const packageText = await page.evaluate(() => document.body.textContent || '');
-    assert(packageText.includes('3.1.5'), 'Docs did not load the 3.1.5 package line.');
+    assert(packageText.includes('3.1.6'), 'Docs did not load the 3.1.6 package line.');
 
     await page.click('.preview-card .vmsd-trigger');
     await page.waitForSelector('.vmsd-menu .vmsd-option', { visible: true });

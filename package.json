@@ -1,6 +1,6 @@
 {
   "name": "@stackline/vue-multiselect-dropdown",
-  "version": "3.1.5",
+  "version": "3.1.6",
   "description": "Maintained Vue multiselect dropdown with Vue 2 and Vue 3 release lines, accessibility-focused keyboard/ARIA tested behavior, Stackline skins, body overlays, object data, scoped slots, and renderless composables.",
   "keywords": [
     "vue",
@@ -26,7 +26,12 @@
     "slots",
     "object-data",
     "admin-ui",
-    "ada-compliant"
+    "vue3",
+    "typescript",
+    "renderless",
+    "composables",
+    "v-model",
+    "scoped-slots"
   ],
   "homepage": "https://alexandro.net/docs/vue/multiselect/vue-3/",
   "bugs": {
@@ -92,5 +97,6 @@
     "esbuild": "0.28.2",
     "nanoid": "3.3.18",
     "postcss": "8.5.26"
-  }
+  },
+  "packageManager": "npm@11.19.0"
 }

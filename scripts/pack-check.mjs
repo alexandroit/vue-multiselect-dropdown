@@ -12,8 +12,8 @@ const report = JSON.parse(execFileSync(
   { cwd: rootDir, encoding: 'utf8' }
 ))[0];
 
-if (packageJson.version !== '3.1.5') {
-  throw new Error(`Expected package version 3.1.5, found ${packageJson.version}.`);
+if (packageJson.version !== '3.1.6') {
+  throw new Error(`Expected package version 3.1.6, found ${packageJson.version}.`);
 }
 
 if (packageJson.peerDependencies.vue !== '>=3.0.0 <4.0.0') {

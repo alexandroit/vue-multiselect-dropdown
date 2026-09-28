@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+## 3.1.6 - 2026-09-28
+
+- Organize package documentation, preserve examples and compatibility guidance, and add verified Stackline community links.
+- Add precise Stackline discovery metadata and standardize GitHub release tooling on Node 24.20.0 and npm 11.19.0.
+- Fail closed on registry lookup errors and use the reviewed GitHub artifact workflow for public npm releases.
+
+
 - Updated both documentation apps to the patched Vite 8.2 toolchain and added
   reproducible build and audit coverage for the Vue 2 compatibility line.
 - Added a strict Vue 2 audit gate that tolerates only the unfixed upstream
