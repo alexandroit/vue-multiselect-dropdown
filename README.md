@@ -1,46 +1,18 @@
 # @stackline/vue-multiselect-dropdown
 
-> A maintained Vue multiselect dropdown with Vue 2 and Vue 3 release lines, controlled `v-model` state, scoped slots, renderless/state composables, searchable/grouped options, lazy loading hooks, custom render functions, skins, body-overlay positioning, and accessibility-focused and keyboard/ARIA tested behavior.
+> Maintained Vue multiselect dropdown with Vue 2 and Vue 3 release lines, accessibility-focused keyboard/ARIA tested behavior, Stackline skins, body overlays, object data, scoped slots, and renderless composables.
 
 [![npm version](https://img.shields.io/npm/v/@stackline/vue-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/vue-multiselect-dropdown)
-[![npm monthly](https://img.shields.io/npm/dm/@stackline/vue-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/vue-multiselect-dropdown)
-[![license](https://img.shields.io/npm/l/@stackline/vue-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/vue-multiselect-dropdown/blob/main/LICENSE)
-[![Vue 3](https://img.shields.io/badge/Vue-3.x-42b883?style=flat-square&logo=vue.js)](https://alexandro.net/docs/vue/multiselect/vue-3/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
+[![license](https://img.shields.io/npm/l/@stackline/vue-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/vue-multiselect-dropdown)
+[![GitHub repository](https://img.shields.io/badge/GitHub-alexandroit%2Fvue-multiselect-dropdown-181717?style=flat-square&logo=github)](https://github.com/alexandroit/vue-multiselect-dropdown)
+[![Docs](https://img.shields.io/badge/docs-alexandro.net-0f766e?style=flat-square)](https://alexandro.net/docs/vue/multiselect/vue-3/)
 [![Reddit community](https://img.shields.io/badge/community-r%2FStackline-ff4500?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/r/Stackline/)
 
-**[Documentation & Live Demos](https://alexandro.net/docs/vue/multiselect/)** | **[Vue 2 Demo](https://alexandro.net/docs/vue/multiselect/vue-2/)** | **[Vue 3 Demo](https://alexandro.net/docs/vue/multiselect/vue-3/)** | **[npm](https://www.npmjs.com/package/@stackline/vue-multiselect-dropdown)** | **[Issues](https://github.com/alexandroit/vue-multiselect-dropdown/issues)** | **[Repository](https://github.com/alexandroit/vue-multiselect-dropdown)** | **[Community Discussions](https://www.reddit.com/r/Stackline/)**
+**[Documentation](https://alexandro.net/docs/vue/multiselect/vue-3/)** | **[npm](https://www.npmjs.com/package/@stackline/vue-multiselect-dropdown)** | **[Issues](https://github.com/alexandroit/vue-multiselect-dropdown/issues)** | **[Repository](https://github.com/alexandroit/vue-multiselect-dropdown)**
 
-<p align="center">
-  <img src="https://alexandro.net/images/public/2026/06/dropdownlist.gif" alt="@stackline/vue-multiselect-dropdown live dropdown preview" width="420">
-</p>
-
-**Package version:** `3.1.6`
-
-**Maintained Vue 2 release:** `2.0.2` for Vue `2.x`
+**Current package version:** `3.1.7`
 
 ---
-
-> **Credits:** Current maintenance, Vue release-line stewardship, publishing, and documentation by [Alexandro Paixao Marques](https://github.com/alexandroit/vue-multiselect-dropdown).
-
----
-
-## Contents
-
-- [Why this package?](#why-this-package)
-- [Compatibility](#compatibility)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
-- [Security](#security)
-- [API Surface](#api-surface)
-- [Local Development](#local-development)
-- [Consumer Smoke Test](#consumer-smoke-test)
-- [Release Checklist](#release-checklist)
-- [Community and Support](#community-and-support)
-- [License](#license)
-
-<a id="why-this-library"></a>
 
 ## Why this package?
 
@@ -54,7 +26,7 @@ This README documents Vue 3 package `3.1.6`. It preserves the renderless and sta
 
 | Item | Value |
 | --- | --- |
-| Package | `@stackline/vue-multiselect-dropdown@3.1.6` |
+| Package | `@stackline/vue-multiselect-dropdown@3.1.7` |
 | Peer: `vue` | `>=3.0.0 <4.0.0` |
 | Runtime dependencies | None; framework peers are supplied by the application |
 | Package format | ESM, CommonJS, and TypeScript declarations |
@@ -79,7 +51,7 @@ Each package family installs on its matching Vue family. Keep the package family
 For Vue 3 applications:
 
 ```bash
-npm install @stackline/vue-multiselect-dropdown@3.1.6 --save-exact
+npm install @stackline/vue-multiselect-dropdown@3.1.7 --save-exact
 ```
 
 For Vue 2 applications:
@@ -546,7 +518,7 @@ Set any key to `false` to disable that behavior. `backspaceRemovesLastWhenSearch
 
 ### Official Vue 3 Test Matrix
 
-The Vue 3 release was tested in a clean Vue `3.5.41` application with `@stackline/vue-multiselect-dropdown@3.1.6`. The docs use the same examples from that test app, including keyboard navigation, focus, ARIA behavior, badge counters, responsive action buttons, scrollable lists, dialog-safe body overlays, the corrected left-aligned placeholder with vertical centering, scoped-slot customization, headless/custom HTML, and the combobox contract checks for Backspace, Escape, focused badge removal, focus, and option ARIA.
+The Vue 3 release was tested in a clean Vue `3.5.41` application with `@stackline/vue-multiselect-dropdown@3.1.7`. The docs use the same examples from that test app, including keyboard navigation, focus, ARIA behavior, badge counters, responsive action buttons, scrollable lists, dialog-safe body overlays, the corrected left-aligned placeholder with vertical centering, scoped-slot customization, headless/custom HTML, and the combobox contract checks for Backspace, Escape, focused badge removal, focus, and option ARIA.
 
 The same core scenarios are validated for the visual skins:
 
@@ -788,15 +760,23 @@ npm run build
 - Publish through the [GitHub Actions workflow](https://github.com/alexandroit/vue-multiselect-dropdown/actions/workflows/publish.yml) using the tested artifact's SHA-512 digest.
 - Verify the exact npm tarball, version, and GitHub provenance after publication; never replace a published version.
 
-## Community and Support
-
-Report reproducible package issues in the [issue tracker](https://github.com/alexandroit/vue-multiselect-dropdown/issues). Use the [security policy](https://github.com/alexandroit/vue-multiselect-dropdown/blob/main/SECURITY.md) for security reports.
-
-- [Stackline / Alexandro.Net](https://alexandro.net/)
-- [GitHub](https://github.com/alexandroit)
-- [Maintainer LinkedIn](https://www.linkedin.com/in/aleinfo/)
-- [Reddit community: r/Stackline](https://www.reddit.com/r/Stackline/)
-
 ## License
 
 MIT
+
+## Credits and original authors
+
+- Copyright (c) 2026 Stackline.
+- Stackline maintenance: [Alexandro Paixao Marques](https://www.linkedin.com/in/aleinfo/) and [Stackline contributors](https://github.com/alexandroit).
+
+Original copyright, license notices and contributor acknowledgements remain part of this distribution. Stackline maintenance does not replace authorship of the original work.
+
+## Community and Links
+
+- [Stackline website](https://alexandro.net/)
+- [GitHub projects](https://github.com/alexandroit)
+- [npm packages](https://www.npmjs.com/~alex360qc)
+- [Reddit community — r/Stackline](https://www.reddit.com/r/Stackline/)
+- [Maintainer LinkedIn](https://www.linkedin.com/in/aleinfo/)
+
+Use this repository's issue tracker for reproducible bugs and feature requests. Join r/Stackline for examples, usage questions and release discussions.
