@@ -4,7 +4,7 @@
     {
       "name": "@stackline/vue-multiselect-dropdown",
       "path": "README.md",
-      "version": "3.1.7",
+      "version": "3.1.8",
       "baselineVersion": "3.1.6",
       "keywords": [
         "stackline",
@@ -31,8 +31,8 @@
       "homepage": "https://alexandro.net/docs/vue/multiselect/vue-3/",
       "baselineTarball": "https://registry.npmjs.org/@stackline/vue-multiselect-dropdown/-/vue-multiselect-dropdown-3.1.6.tgz",
       "baselineIntegrity": "sha512-dekRy3odC3CcSD3Wzu4rZ8vlFm6qNNH3Qu/F39LL7udsTBP9W7qAWUZygMLAOJwS9KXD1AVkhUbySHtiJxOXyQ==",
-      "expectedSha512": "207a74f3daa727bfb2b323cea21d623861f0b93b252d80371e3821a233479530bec30e5018ca76c17d68d39dd7a08e79d7a5186ef4eeba4e6e8182f9a391eeb5",
-      "tag": "docs-stackline-vue-multiselect-dropdown-v3.1.7"
+      "expectedSha512": "1694ff0d3ce4ec7c084c8b762a71cf5ac35685a70956e12513623216b8103c0cc47133a7c10d0af3076bd863ae16647707f2212ff8b1b58e049020726e8bbc8d",
+      "tag": "docs-stackline-vue-multiselect-dropdown-v3.1.8"
     }
   ]
 }
