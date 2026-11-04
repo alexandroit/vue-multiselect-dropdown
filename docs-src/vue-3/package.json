@@ -11,10 +11,10 @@
   "dependencies": {
     "@stackline/vue-multiselect-dropdown": "3.1.6",
     "flag-icons": "7.5.0",
-    "vue": "3.5.41"
+    "vue": "3.5.44"
   },
   "devDependencies": {
-    "vite": "8.2.2"
+    "vite": "8.3.5"
   },
   "overrides": {
     "esbuild": "0.28.2",

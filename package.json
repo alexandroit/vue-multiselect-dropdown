@@ -1,6 +1,6 @@
 {
   "name": "@stackline/vue-multiselect-dropdown",
-  "version": "3.1.8",
+  "version": "3.1.9",
   "description": "Maintained Vue multiselect dropdown with Vue 2 and Vue 3 release lines, accessibility-focused keyboard/ARIA tested behavior, Stackline skins, body overlays, object data, scoped slots, and renderless composables.",
   "keywords": [
     "stackline",
@@ -73,16 +73,16 @@
     "check": "npm run typecheck && npm run build && npm test && npm run pack:check"
   },
   "peerDependencies": {
-    "vue": ">=3.0.0 <4.0.0"
+    "vue": ">=3.5.42 <4.0.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
-    "puppeteer-core": "25.8.0",
+    "puppeteer-core": "25.16.0",
     "tsup": "8.5.1",
     "typescript": "5.9.3",
-    "vue": "3.5.41"
+    "vue": "3.5.44"
   },
   "overrides": {
     "esbuild": "0.28.2",

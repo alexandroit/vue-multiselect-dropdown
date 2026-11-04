@@ -29,14 +29,14 @@ test('ES module distribution exposes the public API', async () => {
   assertPublicApi(await import(path.join(repoRoot, 'dist', 'index.js')));
 });
 
-test('package metadata preserves Vue 3 compatibility', () => {
+test('package metadata requires a patched Vue 3 runtime', () => {
   const packageJson = JSON.parse(fs.readFileSync(path.join(repoRoot, 'package.json'), 'utf8'));
 
   assert.equal(packageJson.exports['.'].import.default, './dist/index.js');
   assert.equal(packageJson.exports['.'].import.types, './dist/index.d.ts');
   assert.equal(packageJson.exports['.'].require.default, './dist/index.cjs');
   assert.equal(packageJson.exports['.'].require.types, './dist/index.d.cts');
-  assert.equal(packageJson.peerDependencies.vue, '>=3.0.0 <4.0.0');
+  assert.equal(packageJson.peerDependencies.vue, '>=3.5.42 <4.0.0');
   assert.equal(packageJson.sideEffects, false);
   assert.equal(packageJson.dependencies, undefined);
 });

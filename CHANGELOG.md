@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## 3.1.9 - 2026-11-04
+
+- Refresh the build and browser-test dependencies to address known security advisories.
+- Run CI and provenance publishing on patched Node.js releases.
+- Require Vue 3.5.42 or newer for the upstream server-renderer security fix.
+
 ## Unreleased
 
 ## 3.1.6 - 2026-09-28

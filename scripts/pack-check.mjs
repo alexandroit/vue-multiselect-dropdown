@@ -12,11 +12,11 @@ const report = JSON.parse(execFileSync(
   { cwd: rootDir, encoding: 'utf8' }
 ))[0];
 
-if (packageJson.version !== '3.1.6') {
-  throw new Error(`Expected package version 3.1.6, found ${packageJson.version}.`);
+if (report.version !== packageJson.version) {
+  throw new Error('Packed version does not match the package manifest.');
 }
 
-if (packageJson.peerDependencies.vue !== '>=3.0.0 <4.0.0') {
+if (packageJson.peerDependencies.vue !== '>=3.5.42 <4.0.0') {
   throw new Error(`Unexpected Vue peer range: ${packageJson.peerDependencies.vue}.`);
 }
 
