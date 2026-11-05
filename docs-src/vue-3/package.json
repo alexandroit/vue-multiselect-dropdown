@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@stackline/vue-multiselect-dropdown": "3.1.6",
+    "@stackline/vue-multiselect-dropdown": "3.1.10",
     "flag-icons": "7.6.0",
     "vue": "3.5.44"
   },
