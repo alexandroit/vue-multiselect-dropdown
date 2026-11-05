@@ -16,6 +16,7 @@ export default defineConfig({
   },
   build: {
     outDir: '../../docs/vue-3',
-    emptyOutDir: true
+    // Keep the separately maintained live application under this output directory.
+    emptyOutDir: false
   }
 });

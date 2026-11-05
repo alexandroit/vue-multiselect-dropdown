@@ -144,7 +144,8 @@ async function run() {
     await page.waitForSelector('.preview-card .vmsd-trigger', { visible: true });
 
     const packageText = await page.evaluate(() => document.body.textContent || '');
-    assert(packageText.includes('3.1.6'), 'Docs did not load the 3.1.6 package line.');
+    const expectedVersion = JSON.parse(fs.readFileSync(path.join(appDir, 'package.json'), 'utf8')).dependencies['@stackline/vue-multiselect-dropdown'];
+    assert(packageText.includes(expectedVersion), `Docs did not load package ${expectedVersion}.`);
 
     await page.click('.preview-card .vmsd-trigger');
     await page.waitForSelector('.vmsd-menu .vmsd-option', { visible: true });

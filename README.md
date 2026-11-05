@@ -10,7 +10,7 @@
 
 **[Documentation](https://alexandro.net/docs/vue/multiselect/vue-3/)** | **[npm](https://www.npmjs.com/package/@stackline/vue-multiselect-dropdown)** | **[Issues](https://github.com/alexandroit/vue-multiselect-dropdown/issues)** | **[Repository](https://github.com/alexandroit/vue-multiselect-dropdown)**
 
-**Current package version:** `3.1.9`
+**Current package version:** `3.1.10`
 
 ---
 
@@ -20,13 +20,13 @@
 
 The package follows the familiar Stackline settings contract while staying idiomatic for Vue: pass `:data`, bind selected values with `v-model`, customize behavior through `:settings`, and listen for Vue events such as `@select`, `@de-select`, `@select-all`, `@de-select-all`, `@open`, and `@close`.
 
-This README documents Vue 3 package `3.1.6`. It preserves the renderless and state composables, scoped-slot customization, helper APIs, and combobox contract while refreshing the tested Vue runtime and security-sensitive development toolchain without changing the public API.
+This README documents Vue 3 package `3.1.10`. It preserves the renderless and state composables, scoped-slot customization, helper APIs, and combobox contract while refreshing the tested Vue runtime and security-sensitive development toolchain without changing the public API.
 
 ## Compatibility
 
 | Item | Value |
 | --- | --- |
-| Package | `@stackline/vue-multiselect-dropdown@3.1.9` |
+| Package | `@stackline/vue-multiselect-dropdown@3.1.10` |
 | Peer: `vue` | `>=3.5.42 <4.0.0` |
 | Runtime dependencies | None; framework peers are supplied by the application |
 | Package format | ESM, CommonJS, and TypeScript declarations |
@@ -51,7 +51,7 @@ Each package family installs on its matching Vue family. Keep the package family
 For Vue 3 applications:
 
 ```bash
-npm install @stackline/vue-multiselect-dropdown@3.1.9 --save-exact
+npm install @stackline/vue-multiselect-dropdown@3.1.10 --save-exact
 ```
 
 For Vue 2 applications:
@@ -518,7 +518,7 @@ Set any key to `false` to disable that behavior. `backspaceRemovesLastWhenSearch
 
 ### Official Vue 3 Test Matrix
 
-The Vue 3 release was tested in a clean Vue `3.5.44` application with `@stackline/vue-multiselect-dropdown@3.1.9`. The docs use the same examples from that test app, including keyboard navigation, focus, ARIA behavior, badge counters, responsive action buttons, scrollable lists, dialog-safe body overlays, the corrected left-aligned placeholder with vertical centering, scoped-slot customization, headless/custom HTML, and the combobox contract checks for Backspace, Escape, focused badge removal, focus, and option ARIA.
+The Vue 3 release was tested in a clean Vue `3.5.44` application with `@stackline/vue-multiselect-dropdown@3.1.10`. The docs use the same examples from that test app, including keyboard navigation, focus, ARIA behavior, badge counters, responsive action buttons, scrollable lists, dialog-safe body overlays, the corrected left-aligned placeholder with vertical centering, scoped-slot customization, headless/custom HTML, and the combobox contract checks for Backspace, Escape, focused badge removal, focus, and option ARIA.
 
 The same core scenarios are validated for the visual skins:
 
